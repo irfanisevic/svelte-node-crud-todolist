@@ -1,137 +1,186 @@
-# Fullstack HTML + Node.js Template 🚀
+# Svelte + Node.js Todo List (Full CRUD)
 
-Simple reusable fullstack template using:
+Simple fullstack Todo List application built with:
 
-- HTML, CSS, Vanilla JS (Frontend)
-- Node.js
-- Express
-- CORS
-- Nodemon (for development)
-- EJS (optional, if needed later)
+* **Frontend:** Svelte (Vite)
+* **Backend:** Node.js + Express
+* **Architecture:** Separate frontend and backend
+* **Features:** Full CRUD (Create, Read, Update, Delete)
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
-my-fullstack-template/
+```
+todo-svelte-node
 │
-├── backend/
-│   ├── package.json
+├── backend
 │   ├── server.js
+│   └── package.json
 │
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   ├── script.js
-│
-├── .gitignore
-└── README.md
+└── frontend
+    ├── package.json
+    ├── vite.config.js
+    │
+    └── src
+        ├── api
+        │   └── todoApi.js
+        │
+        ├── components
+        │   ├── TodoForm.svelte
+        │   └── TodoList.svelte
+        │
+        ├── App.svelte
+        └── main.js
+```
 
 ---
 
-## ⚙️ Installation
+# 🚀 Backend Setup (Node + Express)
 
-### 1️⃣ Install Node.js
+### 1. Go to backend folder
 
-Download & install Node.js from:
-https://nodejs.org
-
-Check installation:
-
-node -v
-npm -v
-
----
-
-### 2️⃣ Setup Backend
-
-Go to backend folder:
-
+```
 cd backend
+```
 
-Initialize project:
+### 2. Install dependencies
 
-npm init -y
+```
+npm install
+```
 
-Install dependencies:
+Required packages:
 
-npm install express cors
+```
+express
+cors
+```
 
-Install dev dependencies:
+### 3. Run backend server
 
-npm install --save-dev nodemon
+```
+node server.js
+```
 
-Optional (if using template engine later):
+Backend will run on:
 
-npm install ejs
-
----
-
-## 📝 Setup package.json Scripts
-
-Add this inside package.json:
-
-"scripts": {
-  "dev": "nodemon server.js",
-  "start": "node server.js"
-}
-
----
-
-## ▶️ Running the Project
-
-### Development Mode (with nodemon)
-
-npm run dev
-
-### Production Mode
-
-npm start
-
----
-
-## 🌐 Frontend
-
-Open:
-
-frontend/index.html
-
-Make sure backend is running on:
-
+```
 http://localhost:3000
+```
+
+Test API endpoint:
+
+```
+http://localhost:3000/api/todos
+```
 
 ---
 
-## 📌 Default Backend Route
+# 🌐 Frontend Setup (Svelte)
 
-GET /
+### 1. Go to frontend folder
 
-Returns:
+```
+cd frontend
+```
 
-{
-  "message": "Backend is running 🚀"
-}
+### 2. Install dependencies
 
----
+```
+npm install
+```
 
-## 🔁 Reusing This Template
+### 3. Run development server
 
-1. Copy this folder
-2. Rename the project
-3. Run `npm install` inside backend
-4. Start developing 🚀
+```
+npm run dev
+```
 
----
+Frontend will run on:
 
-## 🎯 Purpose
-
-This template is built for:
-
-- Practicing fullstack development
-- Testing API + frontend integration
-- Rapid project prototyping
-- Learning real-world workflow
+```
+http://localhost:5173
+```
 
 ---
 
-Happy Coding 🔥
+# 🔌 How Frontend Connects to Backend
+
+Frontend uses `fetch()` to call the REST API.
+
+Example API base URL:
+
+```
+http://localhost:3000/api/todos
+```
+
+Flow:
+
+```
+Svelte Frontend (5173)
+        ↓
+Fetch API
+        ↓
+Node.js Express Backend (3000)
+        ↓
+JSON Response
+        ↓
+UI Update
+```
+
+---
+
+# 📡 API Endpoints
+
+| Method | Endpoint       | Description     |
+| ------ | -------------- | --------------- |
+| GET    | /api/todos     | Get all todos   |
+| POST   | /api/todos     | Create new todo |
+| PUT    | /api/todos/:id | Update todo     |
+| DELETE | /api/todos/:id | Delete todo     |
+
+---
+
+# ✅ Features
+
+* Add todo
+* Toggle completed
+* Edit todo
+* Delete todo
+* REST API
+* Fullstack architecture
+
+---
+
+# 🧠 What This Project Demonstrates
+
+This project demonstrates basic **fullstack web development concepts**:
+
+* Component-based frontend (Svelte)
+* REST API backend (Express)
+* CRUD operations
+* Client-server communication
+* State updates from API responses
+
+---
+
+# 🔧 Possible Improvements
+
+Future upgrades:
+
+* Add **SQLite database**
+* Add **persistent storage**
+* Add **authentication**
+* Add **better UI styling**
+* Deploy to cloud (Render / Vercel / Railway)
+
+---
+
+# 📌 Notes
+
+This project is intended for **learning and experimentation** with fullstack development using Svelte and Node.js.
+
+---
+
+Happy coding 🚀
