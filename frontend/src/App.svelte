@@ -6,6 +6,14 @@
   import { getTodos, createTodo, updateTodo, deleteTodo } from "./api/todoApi";
 
   let todos = [];
+  let filter = "all";
+
+  $: filteredTodos =
+    filter === "active"
+      ? todos.filter((t) => !t.done)
+      : filter === "completed"
+        ? todos.filter((t) => t.done)
+        : todos;
 
   async function loadTodos() {
     todos = await getTodos();
@@ -42,10 +50,16 @@
 
 <h1>To Do App</h1>
 
+<div>
+  <button on:click={() => (filter = "all")}>All</button>
+  <button on:click={() => (filter = "active")}>Active</button>
+  <button on:click={() => (filter = "completed")}>Completed</button>
+</div>
+
 <TodoForm on:add={(e) => handleAdd(e.detail)} />
 
 <TodoList
-  {todos}
+  todos={filteredTodos}
   on:toggle={(e) => handleToggle(e.detail)}
   on:delete={(e) => handleDelete(e.detail)}
   on:edit={(e) => handleEdit(e.detail)}
