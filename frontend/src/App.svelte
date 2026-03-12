@@ -15,6 +15,8 @@
         ? todos.filter((t) => t.done)
         : todos;
 
+  $: remaining = todos.filter(t => !t.done).length
+
   async function loadTodos() {
     todos = await getTodos();
   }
@@ -64,3 +66,5 @@
   on:delete={(e) => handleDelete(e.detail)}
   on:edit={(e) => handleEdit(e.detail)}
 />
+
+<p>{remaining} task left</p>
